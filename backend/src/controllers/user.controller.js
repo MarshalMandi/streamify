@@ -73,7 +73,7 @@ export async function acceptFriendRequest(req, res) {
         if (!friendRequest) {
             return res.status(404).json({ message: "Friend request not found" })
         }
-        if (friendRequest.recipient.toString() !== req.user._id) {
+        if (friendRequest.recipient.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: "You are unauthorized to accept this request" })
         }
         friendRequest.status = "accepted"
