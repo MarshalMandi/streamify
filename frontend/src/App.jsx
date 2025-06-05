@@ -9,7 +9,7 @@ import CallPage from "./pages/CallPage.jsx"
 import ChatPage from "./pages/ChatPage.jsx"
 import OnboardingPage from "./pages/OnboardingPage.jsx"
 import PageLoader from "./components/PageLoader.jsx"
-import useAuthUser from "./hooks/useAuthUser.js"
+import { useAuthUser } from "./hooks/useAuthUser.js"
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser()
@@ -29,8 +29,14 @@ const App = () => {
           (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)
         }>
         </Route>
-        <Route path="/signup" element={!isAuthenticated ? <SignUpPage /> : <Navigate to={"/"} />}></Route>
-        <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to={"/"} />}></Route>
+        <Route path="/signup" element={!isAuthenticated ? <SignUpPage /> : <Navigate to={
+          isOnboarded ? "/" : "/onboarding"
+        } />}>
+        </Route>
+        <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to={
+          isOnboarded ? "/" : "/onboarding"
+        } />}>
+        </Route>
         <Route path="/notifications" element={isAuthenticated ? <NotificationsPage /> : <Navigate to={"/"} />}></Route>
         <Route path="/call" element={isAuthenticated ? <CallPage /> : <Navigate to={"/login"} />}></Route>
         <Route path="/chat" element={isAuthenticated ? <ChatPage /> : <Navigate to={"/login"} />}></Route>

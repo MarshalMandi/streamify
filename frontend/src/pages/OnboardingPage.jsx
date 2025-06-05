@@ -1,5 +1,5 @@
 import { useState } from "react"
-import useAuthUser from "../hooks/useAuthUser.js"
+import { useAuthUser } from "../hooks/useAuthUser.js"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { LoaderIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon } from "lucide-react";
 import toast from "react-hot-toast"
